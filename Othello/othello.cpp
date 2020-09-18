@@ -189,7 +189,7 @@ int Othello::countandflippieces(int i, int j, string player, char piece, bool fl
 		  int counter=0;
 
 	  for(int k=j+2;k<(8-k);k++){
-		  for(int z=i;k<(8-k);i--){
+		  for(int z=i;z<(8-z);z--){
 				if(matrix[z][k]==piece){
 					for(int k=j+2;matrix[z][k]==piece;k++){
 						for(int z=i;matrix[z][k]==piece;z--){
@@ -233,7 +233,7 @@ int Othello::countandflippieces(int i, int j, string player, char piece, bool fl
 		int counter=0;
 
 	for(int k=j+2;k<(8-k);k++){
-		for(int z=i+2;k<(8-k);i++){
+		for(int z=i+2;z<(8-z);z++){
 			if(matrix[z][k]==piece){
 				for(int k=j+2;matrix[z][k]==piece;k++){
 					for(int z=i+2;matrix[z][k]==piece;z--){
@@ -255,7 +255,7 @@ int Othello::countandflippieces(int i, int j, string player, char piece, bool fl
 	  int counter=0;
 
 	for(int k=j;k<(8-k);k++){
-		for(int z=i+2;k<(8-k);i--){
+		for(int z=i+2;z<(8-z);z--){
 			if(matrix[z][k]==piece){
 				for(int k=j;matrix[z][k]==piece;k++){
 					for(int z=i;matrix[z][k]==piece;z--){
@@ -344,7 +344,7 @@ int Othello::countandflippieces(int i, int j, string player, char piece, bool fl
 		  int counter=0;
 
 		  for(int k=j+2;k<(8-k);k++){
-				for(int z=i;k<(8-k);i--){
+				for(int z=i;z<(8-z);z--){
 		  if(matrix[z][k]==piece){
 		  for(int k=j+2;matrix[z][k]==piece;k++){
 					for(int z=i;matrix[z][k]==piece;z--){
@@ -364,7 +364,7 @@ int Othello::countandflippieces(int i, int j, string player, char piece, bool fl
 	  int counter=0;
 
 	  for(int k=j;k<(8-k);k--){
-	        for(int z=i;k<(8-k);i--){
+	        for(int z=i;z<(8-z);z--){
 	  if(matrix[z][k]==piece){
 	  for(int k=j;matrix[z][k]==piece;k--){
 	            for(int z=i;matrix[z][k]==piece;z--){
@@ -384,7 +384,7 @@ int Othello::countandflippieces(int i, int j, string player, char piece, bool fl
 	  int counter=0;
 
 	  for(int k=j+2;k<(8-k);k++){
-	        for(int z=i+2;k<(8-k);i++){
+	        for(int z=i+2;z<(8-z);z++){
 	  if(matrix[z][k]==piece){
 	  for(int k=j+2;matrix[z][k]==piece;k++){
 	            for(int z=i+2;matrix[z][k]==piece;z--){
@@ -404,7 +404,7 @@ int Othello::countandflippieces(int i, int j, string player, char piece, bool fl
 	  int counter=0;
 
 	  for(int k=j;k<(8-k);k++){
-	        for(int z=i+2;k<(8-k);i--){
+	        for(int z=i+2;z<(8-z);z--){
 	  if(matrix[z][k]==piece){
 	  for(int k=j;matrix[z][k]==piece;k++){
 	            for(int z=i;matrix[z][k]==piece;z--){
@@ -472,7 +472,7 @@ void Othello::playGame(){
 	 		//bool canCheck=false;
 
 	 		for(int i=1;i<9;i++){
-	 			for(int j=1;j<9;i++){
+	 			for(int j=1;j<9;j++){
 	 				if(matrix[i][j]=='_'){
 	 					underScoreCount++;
 	 				}
@@ -481,7 +481,7 @@ void Othello::playGame(){
 
 	 		if(underScoreCount==0){
 	 		for(int i=1;i<9;i++){
-	 			for(int j=1;j<9;i++){
+	 			for(int j=1;j<9;j++){
 	 				if(matrix[i][j]==player1.piece){
 	 					counter1++;
 	 				}
