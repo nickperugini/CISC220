@@ -1,16 +1,14 @@
 /*
  * main.cpp
  *
- *
- *
  *  Created on: Sep 11, 2020
- *  	Author: Nick Perugini
- *      Partner: Suryanuj Gupta
+ *  Author: Nicholas Perugini
+ *  Partner: Suryanuj Gupta
  */
 
 #include <iostream>
 #include <stdlib.h>
-#include "othello.cpp"
+#include "othello.hpp"
 #include <time.h>
 using namespace std;
 
