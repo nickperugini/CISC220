@@ -1,10 +1,9 @@
 /*
  * player.hpp
  *
- *
- *
- *  Created on: Sep 13, 2020
- *      Author: Nick Perugini
+ *  Created on: Sep 11, 2020
+ *  Author: Nicholas Perugini
+ *  Partner: Suryanuj Gupta
  */
 
 #ifndef PLAYER_HPP_
@@ -18,19 +17,12 @@ class Player {
 	friend class Othello;
 	public:
 
-	string name;
-	char piece;
+		string name;
+		char piece;
 
-	Player();
-	Player(string, char);
-
-		// Setter
-		//void setPiece(char s);
-		//char getPiece();
+		Player();
+		Player(string, char);
 
 };
-
-
-
 
 #endif /* OTHELLO_HPP_ */
