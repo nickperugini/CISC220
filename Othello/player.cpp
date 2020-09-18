@@ -1,19 +1,28 @@
 /*
- * player.cpp
+ * player.hpp
  *
  *  Created on: Sep 11, 2020
  *  Author: Nicholas Perugini
  *  Partner: Suryanuj Gupta
  */
 
-#include "player.hpp"
+#ifndef PLAYER_HPP_
+#define PLAYER_HPP_
+#include <iostream>
+#include <stdlib.h>
+#include <string.h>
+using namespace std;
 
-Player::Player(){
-	name="computer";
-	piece='O';
-}
+class Player {
+	friend class Othello;
+	public:
 
-Player::Player(string name1, char piece1){
-	name=name1;
-	piece=piece1;
-}
+		string name;
+		char piece;
+
+		Player();
+		Player(string, char);
+
+};
+
+#endif /* OTHELLO_HPP_ */
