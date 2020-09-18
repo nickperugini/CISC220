@@ -1,10 +1,9 @@
 /*
  * player.cpp
  *
- *
- *
- *  Created on: Sep 13, 2020
- *      Author: Nick Perugini
+ *  Created on: Sep 11, 2020
+ *  Author: Nicholas Perugini
+ *  Partner: Suryanuj Gupta
  */
 
 #include "player.hpp"
@@ -18,12 +17,3 @@ Player::Player(string name1, char piece1){
 	name=name1;
 	piece=piece1;
 }
-
-/*void Player::setPiece (char s){
-      piece = s;
-}
-
-char Player::getPiece(){
-  return piece;
-}
-*/
