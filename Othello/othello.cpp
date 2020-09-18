@@ -110,7 +110,7 @@ void Othello::placepiece(string player, char piece){
 
 int Othello::countandflippieces(int i, int j, string player, char piece, bool flip){
 		//Default spot is i+1,j+1
-
+		int globalCounter=0; //this is for the computer to determine the best spot to play
 		if(flip==true){
 		//Check Down
 		if(matrix[i+2][j+1]!=piece && matrix[i+2][j+1]!='_'){
@@ -125,7 +125,7 @@ int Othello::countandflippieces(int i, int j, string player, char piece, bool fl
 				}
 			}
 			if(counter>0){
-				return counter;
+				globalCounter+=counter;
 			}
 
 		}
@@ -143,7 +143,7 @@ int Othello::countandflippieces(int i, int j, string player, char piece, bool fl
 			  }
 		  }
 		  if(counter>0){
-			  return counter;
+			  globalCounter+=counter;
 		  }
 
 	}
@@ -162,7 +162,7 @@ int Othello::countandflippieces(int i, int j, string player, char piece, bool fl
 	    }
 
 	  	if(counter>0){
-			return counter;
+	  		globalCounter+=counter;
 		}
 	}
 
@@ -180,7 +180,7 @@ int Othello::countandflippieces(int i, int j, string player, char piece, bool fl
 	  }
 
 	  if(counter>0){
-		  return counter;
+		  globalCounter+=counter;
 	  }
 	  }
 
@@ -202,7 +202,7 @@ int Othello::countandflippieces(int i, int j, string player, char piece, bool fl
 	  }
 
 	  if(counter>0){
-		  return counter;
+		  globalCounter+=counter;
 	  }
 	  }
 
@@ -224,7 +224,7 @@ int Othello::countandflippieces(int i, int j, string player, char piece, bool fl
 	}
 
     if(counter>0){
-        return counter;
+    	globalCounter+=counter;
     }
 	}
 
@@ -246,7 +246,7 @@ int Othello::countandflippieces(int i, int j, string player, char piece, bool fl
     }
 
 	if(counter>0){
-        return counter;
+		globalCounter+=counter;
     }
 	}
 
@@ -268,11 +268,10 @@ int Othello::countandflippieces(int i, int j, string player, char piece, bool fl
 	}
 
 	if(counter>0){
-	   return counter;
+		globalCounter+=counter;
 	}
 	}
-
-}
+	}
 
 		if(flip==false){
 			//Checks Down
@@ -288,7 +287,7 @@ int Othello::countandflippieces(int i, int j, string player, char piece, bool fl
 		  			}
 		    	}
 	      if(counter>0){
-	        return counter;
+	    	  globalCounter+=counter;
 	      }
 			}
 
@@ -304,7 +303,7 @@ int Othello::countandflippieces(int i, int j, string player, char piece, bool fl
 						}
 					}
 			if(counter>0){
-				return counter;
+				globalCounter+=counter;
 			}
 			}
 
@@ -320,7 +319,7 @@ int Othello::countandflippieces(int i, int j, string player, char piece, bool fl
 		  			}
 		    	}
 	    if(counter>0){
-	        return counter;
+	    	globalCounter+=counter;
 	    }
 		}
 
@@ -336,7 +335,7 @@ int Othello::countandflippieces(int i, int j, string player, char piece, bool fl
 		  			}
 		    	}
 	    if(counter>0){
-	        return counter;
+	    	globalCounter+=counter;
 	    }
 		}
 
@@ -356,7 +355,7 @@ int Othello::countandflippieces(int i, int j, string player, char piece, bool fl
 			  }
 			  }
 			if(counter>0){
-				return counter;
+				globalCounter+=counter;
 			}
 		}
 
@@ -376,7 +375,7 @@ int Othello::countandflippieces(int i, int j, string player, char piece, bool fl
 	      }
 	      }
 	    if(counter>0){
-	        return counter;
+	    	globalCounter+=counter;
 	    }
 	}
 
@@ -396,7 +395,7 @@ int Othello::countandflippieces(int i, int j, string player, char piece, bool fl
 	      }
 	      }
 	    if(counter>0){
-	        return counter;
+	    	globalCounter+=counter;
 	    }
 	}
 
@@ -416,10 +415,11 @@ int Othello::countandflippieces(int i, int j, string player, char piece, bool fl
 	      }
 	      }
 	    if(counter>0){
-	        return counter;
+	    	globalCounter+=counter;
 	    }
+	  }
 	}
-		}
+	return globalCounter;
 }
 
 
