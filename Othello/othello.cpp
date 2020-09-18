@@ -2,12 +2,11 @@
  * othello.cpp
  *
  *  Created on: Sep 11, 2020
-*      Author: Nicholas Perugini
-*      Partner: Suryanuj Gupta
+ *  Author: Nicholas Perugini
+ *  Partner: Suryanuj Gupta
 */
 
 #include "othello.hpp"
-#include "player.cpp"
 
 Othello::Othello(){
 	player1.piece='O';
@@ -95,7 +94,7 @@ void Othello::placepiece(string player, char piece){
 
 			int flipped=countandflippieces(x,y,player,piece,true);
 
-			if(flipped<=0){
+			if(flipped<0){
 				cout << "Player forfeits turn!" << endl;
 			}
 	}
@@ -540,8 +539,6 @@ void Othello::playGame(){
 		fullsqrs+=1;
 	}
 }
-
-
 /* *************************************************************************
 and code for the main function, which should be in its own file with a .cpp
 extension, located in the same project folder as your Othello Class and your Player
