@@ -4,6 +4,7 @@ including the method definitions to accompany the method declarations
 in BST.hpp
 */
 #include "BST.hpp"
+#include <string>
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
@@ -59,6 +60,7 @@ void BST::clearTree() {
 		root = NULL;
 	}
 }
+
 void BST::clearTree(TNode *tmp) {
 	if (tmp == NULL) {
 		return;
@@ -75,10 +77,10 @@ TNode *BST::insertRec(TNode *root,string s){		//helper function
 	if(root==NULL){
 			return new TNode(s);
 		}
-	else if(s<=root->data){
+	else if(s<=root->data->phrase){
 		root->left=insertRec(root->left,s);
 	}
-	else if(s>root->data){
+	else if(s>root->data->phrase){
 		root->right=insertRec(root->right,s);
 	}
 	return root;
@@ -90,20 +92,20 @@ bool BST::insert(string s){
 		return false;
 	}
 	root=newNode;
-	setHeight;
+	//setHeight();
 	return true;
 }
 
-TNode * findRec(TNode *root, string s){
+TNode * BST::findRec(TNode *root, string s){
 	if (root==NULL){
 		return NULL;
 	}
 
-	else if (root->data==0){
+	else if ((root->data->phrase).compare(s)==0){
 		return root;
 	}
 
-	else if (root->data<0){
+	else if ((root->data->phrase).compare(s)<0){
 		return findRec(root->right,s);
 	}
 
@@ -150,14 +152,14 @@ void BST::printTreePost(TNode *n){
 
 TNode *BST::remove(string s){
 	TNode *tmp=find(s);
-	if(tmp->left==NULL & tmp->right==NULL){
+	if((tmp->left==NULL) & (tmp->right==NULL)){
 		removeNoKids(tmp);
 		return tmp;
 	}
-	else if(tmp->left!=NULL & tmp->right==NULL){
+	else if((tmp->left!=NULL) & (tmp->right==NULL)){
 		removeOneKid(tmp,false);
 	}
-	else if(tmp->left==NULL & tmp->right!=NULL){
+	else if((tmp->left==NULL) & (tmp->right!=NULL)){
 		removeOneKid(tmp,true);
 		}
 	else{
@@ -179,9 +181,9 @@ TNode *BST::remove(string s){
 }
 
 TNode *BST::removeNoKids(TNode *tmp){
-
+	TNode *returnVal=tmp;
 	delete(tmp);
-	return tmp;				//Can i return tmp after deleting it?
+	return returnVal;				//Can i return tmp after deleting it?
 }
 
 TNode *BST::removeOneKid(TNode *tmp,bool leftFlag){
@@ -193,7 +195,7 @@ TNode *BST::removeOneKid(TNode *tmp,bool leftFlag){
 		else{
 			tmp->parent->left=tmp->right;
 		}
-		delete(tmp);
+		return tmp;
 	}
 	else{
 		tmp->left->parent=tmp->parent;
@@ -203,19 +205,24 @@ TNode *BST::removeOneKid(TNode *tmp,bool leftFlag){
 		else{
 			tmp->parent->right=tmp->left;
 		}
-		delete(tmp);
+		return tmp;
 	}
 }
 
-void BST::setHeight(TNode *n){
-
-	if(root==NULL){
-		return;
-	}
-	else {
-		int left_height = setHeight(root->left);
-		int right_height = setHeight(root->right);
-
-		return max(left_height, right_height)+1
-	}
+void BST::setHeight(TNode * n){
+        int oldH = 1;
+        int newH = 0;
+        n = n->parent;
+        while(oldH != newH && n->parent != NULL){
+                oldH = n->height;
+                if(n->right->height < n->left->height){
+                	newH= n->left->height;
+                }
+                else{
+                	newH=n->right->height;
+                }
+                newH++;
+                n->height = newH;
+        }
+}
 
