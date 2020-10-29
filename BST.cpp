@@ -1,8 +1,3 @@
-/*Note: you must create the BST.cpp file.  I'm only including a few 
-Otherwise, as specified in the directions, you must write the BST.cpp.
-including the method definitions to accompany the method declarations 
-in BST.hpp
-*/
 #include "BST.hpp"
 #include <string>
 #include <iostream>
@@ -92,7 +87,6 @@ bool BST::insert(string s){
 		return false;
 	}
 	root=newNode;
-	//setHeight();
 	return true;
 }
 
@@ -134,8 +128,8 @@ void BST::printTreePre(TNode *n){
 		}
 		else {
 			n->printNode();
-			printTreeIO(n->left);
-			printTreeIO(n->right);
+			printTreePre(n->left);
+			printTreePre(n->right);
 		}
 	}
 
@@ -144,8 +138,8 @@ void BST::printTreePost(TNode *n){
 			return;
 		}
 		else {
-			printTreeIO(n->left);
-			printTreeIO(n->right);
+			printTreePost(n->left);
+			printTreePost(n->right);
 			n->printNode();
 		}
 	}
@@ -158,15 +152,17 @@ TNode *BST::remove(string s){
 	}
 	else if((tmp->left!=NULL) & (tmp->right==NULL)){
 		removeOneKid(tmp,false);
+		return tmp;
 	}
 	else if((tmp->left==NULL) & (tmp->right!=NULL)){
 		removeOneKid(tmp,true);
+		return tmp;
 		}
 	else{
 		if(tmp->left->right==NULL){	//condition if left node does not have a child to the right
 			tmp->left->parent=tmp->parent;
 			tmp->parent->left=tmp->left;
-			delete(tmp);
+			return(tmp);
 		}
 		else{
 			TNode *rmving=tmp;
@@ -175,15 +171,19 @@ TNode *BST::remove(string s){
 				tmp=tmp->right;
 			}
 			rmving->data=tmp->data;
-			delete(tmp);
+			return(tmp);
 		}
 	}
 }
 
 TNode *BST::removeNoKids(TNode *tmp){
-	TNode *returnVal=tmp;
-	delete(tmp);
-	return returnVal;				//Can i return tmp after deleting it?
+	if(tmp->parent->left==tmp){
+		tmp->parent->left=NULL;
+	}
+	else{
+		tmp->parent->right=NULL;
+	}
+	return tmp;
 }
 
 TNode *BST::removeOneKid(TNode *tmp,bool leftFlag){
@@ -225,4 +225,3 @@ void BST::setHeight(TNode * n){
                 n->height = newH;
         }
 }
-
