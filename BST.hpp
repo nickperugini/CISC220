@@ -15,9 +15,9 @@ class BST {
 
 public:
 	BST();
-	BST(string s);
-	bool insert(string s);
-	TNode *find(string s);
+	BST(string sarr[]);  // updated
+	bool insert(string sarr[]);  //updated
+	TNode *find(string l, string f); //updated			//find is different here
 	void printTreeIO();
 	void printTreeIO(TNode *n);
 	void printTreePre();
@@ -28,11 +28,16 @@ public:
 	void clearTree(TNode *tmp);
 	TNode *removeNoKids(TNode *tmp);
 	TNode *removeOneKid(TNode *tmp, bool leftFlag);
-	TNode *remove(string s);
+	TNode *remove(string s, string l);  //updated
 	void setHeight(TNode *n);
-	TNode *insertRec(TNode *root,string s);
-	TNode *findRec(TNode *root,string s);
+	TNode *findRec(TNode *root, string last,string first,int counter);
+
+	/******************New for AVL ***************************/
+	int getBalance(TNode *tmp);
+	TNode *rotateRight(TNode *tmp);
+	TNode *rotateLeft(TNode *tmp);
 };
+
 
 
 
