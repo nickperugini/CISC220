@@ -131,7 +131,7 @@ bool BST::insert(string sarr[]){
 
 TNode *BST::find(string last, string first){
 	TNode *n=root;
-	if(root==NULL){
+	if(n==NULL){
 		return NULL;
 	}
 	else{
@@ -163,8 +163,8 @@ TNode *BST::find(string last, string first){
 				}
 			}
 		}
-		return NULL;
 	}
+	return NULL;
 }
 
 void BST::printTreeIO(TNode *n) {
@@ -312,10 +312,18 @@ void BST::setHeight(TNode * n){
 		else{
 			n->height = n->left->height + 1;
 		}
-		if(getBalance(n)>1){				//need to add a few more cases
+		if(getBalance(n)==2 && getBalance(n->left)==1){				//need to add a few more cases
+			rotateRight(n);
+		}
+		else if(getBalance(n)==2 && getBalance(n->left)==-1){
+			rotateLeft(n->left);
+			rotateRight(n);
+		}
+		else if(getBalance(n)==-2 && getBalance(n->right)==-1){
 			rotateLeft(n);
 		}
-		else if(getBalance(n)<-1 && abs(getBalance(n->right))<2){
+		else if(getBalance(n)==-2 && getBalance(n->right)==1){
+			rotateRight(n->right);
 			rotateLeft(n);
 		}
 	}
@@ -329,13 +337,31 @@ TNode *BST::rotateLeft(TNode *tmp){
 	TNode *tmp2=tmp->right;
 	tmp->right=tmp2->left;
 	tmp2->left=tmp;
-	tmp->parent=tmp2;
 	if(tmp==root){  //root case
 		root=tmp2;
 		tmp2->parent=NULL;
+		tmp->parent=tmp2;
 	}
 	else{
 		tmp2->parent=tmp->parent;
+		tmp->parent=tmp2;
 	}
 	return tmp2;
 }
+
+TNode *BST::rotateRight(TNode *tmp){
+	TNode *tmp2=tmp->left;
+	tmp->left=tmp2->right;
+	tmp2->right=tmp;
+	if(tmp==root){  //root case
+		root=tmp2;
+		tmp2->parent=NULL;
+		tmp->parent=tmp2;
+	}
+	else{
+		tmp2->parent=tmp->parent;
+		tmp->parent=tmp2;
+	}
+	return tmp2;
+}
+
