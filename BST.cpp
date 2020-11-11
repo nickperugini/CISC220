@@ -320,8 +320,8 @@ void BST::setHeight(TNode * n){
 		if(getBalance(n)>1){				//need to add a few more cases
 			rotateLeft(n);
 		}
-		else if(getBalance(n)<-1){
-
+		else if(getBalance(n)<-1 && abs(getBalance(n->right))<2){
+			rotateLeft(n);
 		}
 	}
 }
