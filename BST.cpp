@@ -128,8 +128,13 @@ bool BST::insert(string sarr[]){
 	}
 	return false;	//might not be needed
 }
-TNode *n=root;
-	if(root!=NULL){
+
+TNode *BST::find(string last, string first){
+	TNode *n=root;
+	if(root==NULL){
+		return NULL;
+	}
+	else{
 		while(n->student->last !=last){
 			if(n->student->last < last){
 				n=n->right;
@@ -137,26 +142,30 @@ TNode *n=root;
 			else if(n->student->last >last){
 				n=n->left;
 			}
-			else if(n->student->last==last && n->student->first==first){
-				return n;
-			}
-			else if(n->student->last==last && n->student->first!=first){
-				if(n->student->first < first){
-					n=n->right;
-				}
-				else if(n->student->first >first){
-					n=n->left;
-				}
-			}
 			else if(n==NULL){
 				return NULL;
 			}
 		}
-	}
-	else{
+		if(n->student->last==last && n->student->first==first){
+			return n;
+		}
+		else if(n->student->last==last && n->student->first!=first){
+			if(n->student->first < first){
+				n=n->right;
+				if(n->student->last==last && n->student->first==first){
+					return n;
+				}
+			}
+			else if(n->student->first >first){
+				n=n->left;
+				if(n->student->last==last && n->student->first==first){
+					return n;
+				}
+			}
+		}
 		return NULL;
-		}	
 	}
+}
 
 void BST::printTreeIO(TNode *n) {
 	if (n == NULL) {
@@ -328,8 +337,5 @@ TNode *BST::rotateLeft(TNode *tmp){
 	else{
 		tmp2->parent=tmp->parent;
 	}
-}
-
-TNode *BST::rotateRight(TNode *tmp){
-
+	return tmp2;
 }
