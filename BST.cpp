@@ -128,49 +128,35 @@ bool BST::insert(string sarr[]){
 	}
 	return false;	//might not be needed
 }
-
-TNode * BST::findRec(TNode *root, string last,string first, int counter){
-	if (root==NULL){
-		return NULL;
-	}
-
-	else if ((root->student->last)==last){
-		if(root->student->first.compare(first)>0){
-			return findRec(root->left,last,first,counter++);
+TNode *n=root;
+	if(root!=NULL){
+		while(n->student->last !=last){
+			if(n->student->last < last){
+				n=n->right;
+			}
+			else if(n->student->last >last){
+				n=n->left;
+			}
+			else if(n->student->last==last && n->student->first==first){
+				return n;
+			}
+			else if(n->student->last==last && n->student->first!=first){
+				if(n->student->first < first){
+					n=n->right;
+				}
+				else if(n->student->first >first){
+					n=n->left;
+				}
+			}
+			else if(n==NULL){
+				return NULL;
+			}
 		}
-		else{
-			return findRec(root->right,last,first,counter++);
-		}
-		cout << "Iterations:" << counter << endl;
-		return root;
 	}
-
-	else if ((root->student->last).compare(last)<0){
-		return findRec(root->right,last,first,counter++);
-	}
-
-		return findRec(root->left,last,first,counter++);
-	}
-
-TNode *BST::find(string last, string first){
-	return findRec(root,last,first,0);
-	if (root==NULL){
-			return NULL;
-		}
 	else{
-		while(root->left!=NULL || root->right!=NULL){}
+		return NULL;
+		}	
 	}
-	if ((root->student->last)==last){
-		if(root->student->first.compare(first)>0){
-			return findRec(root->left,last,first,counter++);
-		}
-		else{
-			return findRec(root->right,last,first,counter++);
-		}
-		cout << "Iterations:" << counter << endl;
-		return root;
-	}
-}
 
 void BST::printTreeIO(TNode *n) {
 	if (n == NULL) {
