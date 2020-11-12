@@ -30,8 +30,7 @@ public:
 	TNode *removeOneKid(TNode *tmp, bool leftFlag);
 	TNode *remove(string s, string l);  //updated
 	void setHeight(TNode *n);
-	TNode *findRec(TNode *root, string last,string first,int counter);
-
+	void updateHeight(TNode *n);
 	/******************New for AVL ***************************/
 	int getBalance(TNode *tmp);
 	TNode *rotateRight(TNode *tmp);
